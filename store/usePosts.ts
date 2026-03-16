@@ -15,7 +15,8 @@ export const usePostStore = create<PostStoreType>((set)=> (
         addPost: (post) => 
             set((state)=> {
                 const updatedPosts = [post,...state.posts];
-                localStorage.setItem("posts", JSON.stringify(updatedPosts));
+                const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+                localStorage.setItem("posts", JSON.stringify([post,...savedPosts]));
                 return { posts: updatedPosts};
             }),
     }

@@ -21,7 +21,7 @@ export default function Home() {
     if (data) {
       const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
 
-      const mergedPosts = [...data, ...savedPosts];
+      const mergedPosts = [ ...savedPosts,...data];
 
       setPosts(mergedPosts);
     }
@@ -39,6 +39,7 @@ export default function Home() {
 
   const start = (page - 1) * postsPerPage;
   const currentPosts = posts.slice(start, start + postsPerPage);
+  console.log(currentPosts,start,totalPages,posts,"ad")
 
   return (
     <div className="max-w-5xl mx-auto p-6 overflow-hidden">
